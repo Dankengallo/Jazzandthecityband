@@ -6,7 +6,7 @@
   --text: #f2efe8;
   --muted: #a4a19a;
   --line: rgba(255,255,255,.14);
-  --accent: #d4ff4f;
+  --accent: #1f4e8c;
   --max: 1240px;
 }
 
@@ -58,7 +58,7 @@ button, input, textarea { font: inherit; }
 .hero { min-height: 100vh; display: grid; align-items: end; padding: 150px 0 56px; position: relative; overflow: hidden; }
 .hero::after {
   content: ""; position: absolute; width: 60vw; height: 60vw; border-radius: 50%;
-  background: radial-gradient(circle, rgba(212,255,79,.18), transparent 63%);
+  background: radial-gradient(circle, rgba(31,78,140,.18), transparent 63%);
   right: -18vw; top: -18vw; filter: blur(15px);
 }
 .hero-grid { display: grid; grid-template-columns: 1.3fr .7fr; align-items: end; gap: 40px; position: relative; z-index: 1; }
@@ -80,7 +80,7 @@ section { padding: 120px 0; }
 .art-card::before {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(135deg, transparent 0 40%, rgba(212,255,79,.8) 40% 42%, transparent 42%),
+    linear-gradient(135deg, transparent 0 40%, rgba(31,78,140,.8) 40% 42%, transparent 42%),
     radial-gradient(circle at 70% 30%, #3b3b3b 0 11%, transparent 12%),
     radial-gradient(circle at 40% 60%, #232323 0 22%, transparent 23%),
     linear-gradient(145deg, #181818, #050505);
@@ -91,10 +91,10 @@ section { padding: 120px 0; }
 
 .release-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 46px; }
 .release { background: var(--surface); border: 1px solid var(--line); padding: 18px; transition: transform .3s ease, border-color .3s ease; }
-.release:hover { transform: translateY(-7px); border-color: rgba(212,255,79,.55); }
+.release:hover { transform: translateY(-7px); border-color: rgba(31,78,140,.55); }
 .cover { aspect-ratio: 1; margin-bottom: 20px; background: linear-gradient(145deg,#1a1a1a,#333); position: relative; overflow: hidden; }
 .cover::before { content: ""; position: absolute; width: 72%; height: 72%; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; left: 14%; top: 14%; }
-.cover::after { content: ""; position: absolute; width: 16%; height: 16%; background: var(--accent); border-radius: 50%; left: 42%; top: 42%; box-shadow: 0 0 80px rgba(212,255,79,.55); }
+.cover::after { content: ""; position: absolute; width: 16%; height: 16%; background: var(--accent); border-radius: 50%; left: 42%; top: 42%; box-shadow: 0 0 80px rgba(31,78,140,.55); }
 .release h3 { margin: 0 0 4px; }
 .release p { margin: 0; color: var(--muted); font-size: .9rem; }
 
@@ -104,8 +104,8 @@ section { padding: 120px 0; }
 .date { font-family: "Playfair Display", serif; font-size: 1.55rem; }
 .place, .venue { color: var(--muted); }
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border: 1px solid var(--line); transition: .25s ease; }
-.btn:hover { background: var(--accent); color: #090909; border-color: var(--accent); }
-.btn.primary { background: var(--accent); color: #090909; border-color: var(--accent); }
+.btn:hover { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: #ffffff; border-color: var(--accent); }
 .btn.primary:hover { background: transparent; color: var(--text); }
 
 .gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; margin-top: 42px; }
@@ -113,7 +113,7 @@ section { padding: 120px 0; }
 .gallery-item::before { content: ""; position: absolute; inset: 0; background: var(--art); transition: transform .7s ease, filter .7s ease; }
 .gallery-item:hover::before { transform: scale(1.06); filter: contrast(1.2); }
 .gallery-item:nth-child(1) { grid-column: span 7; --art: linear-gradient(150deg,#0f0f0f,#5b5b5b 55%,#101010); }
-.gallery-item:nth-child(2) { grid-column: span 5; --art: radial-gradient(circle at 30% 30%,#d4ff4f 0 8%,transparent 9%),linear-gradient(135deg,#111,#3a3a3a); }
+.gallery-item:nth-child(2) { grid-column: span 5; --art: radial-gradient(circle at 30% 30%,#1f4e8c 0 8%,transparent 9%),linear-gradient(135deg,#111,#3a3a3a); }
 .gallery-item:nth-child(3) { grid-column: span 4; --art: linear-gradient(35deg,#111 0 45%,#2f2f2f 46% 55%,#0a0a0a 56%); }
 .gallery-item:nth-child(4) { grid-column: span 8; --art: radial-gradient(ellipse at 65% 45%,#555 0 18%,transparent 19%),linear-gradient(145deg,#090909,#282828); }
 
