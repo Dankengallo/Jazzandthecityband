@@ -1,9 +1,585 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="description" content="Listen to live performances by Jazz & The City Band."><title>Listen — Jazz & The City Band</title><link rel="stylesheet" href="assets/css/styles.css"></head><body>
-<header class="site-header"><div class="container nav"><a class="logo" href="index.html">Jazz & The City</a><nav id="site-navigation" class="nav-links"><a href="index.html">Home</a><a class="active" href="music.html">Listen</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><button class="menu-btn" aria-expanded="false" aria-controls="site-navigation" aria-label="Open menu">☰</button></div></header>
-<main><section class="page-hero"><div class="container reveal"><p class="eyebrow">Listen</p><h1 class="display">Live jazz,<br>in motion.</h1><p class="lead">A few selections from recent performances.</p></div></section>
-<section><div class="container"><div class="video-stack">
-<article class="video-feature reveal"><div class="video-card"><iframe src="https://player.vimeo.com/video/1147183994" title="Jazz & The City Band — live performance one" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><h2>Misty</h2></article>
-<article class="video-feature reveal"><div class="video-card"><iframe src="https://player.vimeo.com/video/1133306141" title="Jazz & The City Band — live performance two" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><h2>Not So Bluesy After All</h2></article>
-<article class="video-feature reveal"><div class="video-card"><iframe src="https://player.vimeo.com/video/1164804789" title="Jazz & The City Band — live performance three" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><h2>The Man I Love · Desafinado · On The Street Where You Live</h2></article>
-</div></div></section></main>
-<footer><div class="container"><div class="footer-grid"><div><div class="logo">Jazz & The City</div><p class="lead">Live jazz from New York City.</p></div><div class="socials"><a href="mailto:JazzAndTheCityBand@gmail.com">Email</a><a href="contact.html">Booking</a></div></div><div class="copyright">© 2026 Jazz & The City Band.</div></div></footer><script src="assets/js/main.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="Listen to live jazz performances by Jazz & The City Band."
+  >
+
+  <title>Listen — Jazz & The City Band</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <style>
+    .audio-section {
+      padding-top: 1rem;
+      padding-bottom: 6rem;
+    }
+
+    .audio-player {
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.015)
+        );
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .player-main {
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .now-playing-label {
+      margin: 0 0 0.65rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
+    .track-title {
+      margin: 0 0 2rem;
+      font-size: clamp(1.8rem, 5vw, 3.8rem);
+      line-height: 1.05;
+      font-weight: 500;
+    }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .control-button {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 50%;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      transition:
+        transform 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease;
+    }
+
+    .control-button:hover,
+    .control-button:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .play-button {
+      width: 58px;
+      height: 58px;
+      border-color: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.96);
+      color: #111;
+      font-size: 1.05rem;
+    }
+
+    .play-button:hover,
+    .play-button:focus-visible {
+      background: #fff;
+    }
+
+    .progress-area {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) 48px;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .time {
+      font-size: 0.76rem;
+      font-variant-numeric: tabular-nums;
+      opacity: 0.62;
+    }
+
+    .time:last-child {
+      text-align: right;
+    }
+
+    .progress,
+    .volume {
+      width: 100%;
+      cursor: pointer;
+      accent-color: currentColor;
+    }
+
+    .volume-row {
+      display: grid;
+      grid-template-columns: auto minmax(90px, 180px);
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1.25rem;
+    }
+
+    .volume-label {
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.62;
+    }
+
+    .playlist {
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      list-style: none;
+    }
+
+    .playlist-item + .playlist-item {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .playlist-button {
+      display: grid;
+      grid-template-columns: 2rem minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      padding: 1.15rem clamp(1.25rem, 4vw, 2.5rem);
+      border: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: background 180ms ease;
+    }
+
+    .playlist-button:hover,
+    .playlist-button:focus-visible {
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .playlist-button.is-active {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .track-number {
+      font-size: 0.75rem;
+      font-variant-numeric: tabular-nums;
+      opacity: 0.55;
+    }
+
+    .playlist-title {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      font-weight: 500;
+    }
+
+    .playing-indicator {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0;
+    }
+
+    .playlist-button.is-active .playing-indicator {
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .player-main {
+        padding: 1.5rem;
+      }
+
+      .progress-area {
+        grid-template-columns: 42px minmax(0, 1fr) 42px;
+        gap: 0.5rem;
+      }
+
+      .playlist-button {
+        grid-template-columns: 1.6rem minmax(0, 1fr);
+      }
+
+      .playing-indicator {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html">Jazz & The City</a>
+
+      <nav id="site-navigation" class="nav-links">
+        <a href="index.html">Home</a>
+        <a class="active" href="music.html">Listen</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <button
+        class="menu-btn"
+        aria-expanded="false"
+        aria-controls="site-navigation"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container reveal">
+        <p class="eyebrow">Listen</p>
+
+        <h1 class="display">
+          The sound of<br>
+          New York jazz.
+        </h1>
+
+        <p class="lead">
+          A few selections from recent performances.
+        </p>
+      </div>
+    </section>
+
+    <section class="audio-section">
+      <div class="container">
+        <div class="audio-player reveal">
+          <audio id="audio" preload="metadata">
+            Your browser does not support the audio player.
+          </audio>
+
+          <div class="player-main">
+            <p class="now-playing-label">Now playing</p>
+
+            <h2 id="track-title" class="track-title">
+              Not So Bluesy After All
+            </h2>
+
+            <div class="player-controls">
+              <button
+                id="previous-button"
+                class="control-button"
+                type="button"
+                aria-label="Previous track"
+              >
+                ‹
+              </button>
+
+              <button
+                id="play-button"
+                class="control-button play-button"
+                type="button"
+                aria-label="Play"
+              >
+                ▶
+              </button>
+
+              <button
+                id="next-button"
+                class="control-button"
+                type="button"
+                aria-label="Next track"
+              >
+                ›
+              </button>
+            </div>
+
+            <div class="progress-area">
+              <span id="current-time" class="time">0:00</span>
+
+              <input
+                id="progress"
+                class="progress"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+                aria-label="Track progress"
+              >
+
+              <span id="duration" class="time">0:00</span>
+            </div>
+
+            <div class="volume-row">
+              <label class="volume-label" for="volume">
+                Volume
+              </label>
+
+              <input
+                id="volume"
+                class="volume"
+                type="range"
+                min="0"
+                max="1"
+                value="0.8"
+                step="0.01"
+              >
+            </div>
+          </div>
+
+          <ol class="playlist">
+            <li class="playlist-item">
+              <button
+                class="playlist-button is-active"
+                type="button"
+                data-index="0"
+              >
+                <span class="track-number">01</span>
+
+                <span class="playlist-title">
+                  Not So Bluesy After All
+                </span>
+
+                <span class="playing-indicator">
+                  Selected
+                </span>
+              </button>
+            </li>
+
+            <li class="playlist-item">
+              <button
+                class="playlist-button"
+                type="button"
+                data-index="1"
+              >
+                <span class="track-number">02</span>
+
+                <span class="playlist-title">
+                  On the Street Where You Live
+                </span>
+
+                <span class="playing-indicator">
+                  Selected
+                </span>
+              </button>
+            </li>
+
+            <li class="playlist-item">
+              <button
+                class="playlist-button"
+                type="button"
+                data-index="2"
+              >
+                <span class="track-number">03</span>
+
+                <span class="playlist-title">
+                  The Man I Love
+                </span>
+
+                <span class="playing-indicator">
+                  Selected
+                </span>
+              </button>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo">Jazz & The City</div>
+          <p class="lead">Live jazz from New York City.</p>
+        </div>
+
+        <div class="socials">
+          <a href="mailto:JazzAndTheCityBand@gmail.com">Email</a>
+          <a href="contact.html">Booking</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © 2026 Jazz & The City Band.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    const tracks = [
+      {
+        title: "Not So Bluesy After All",
+        file: "assets/audio/Not so bluesy after all.mp3"
+      },
+      {
+        title: "On the Street Where You Live",
+        file: "assets/audio/On the street where you live.mp3"
+      },
+      {
+        title: "The Man I Love",
+        file: "assets/audio/The man I love.mp3"
+      }
+    ];
+
+    const audio = document.getElementById("audio");
+    const playButton = document.getElementById("play-button");
+    const previousButton = document.getElementById("previous-button");
+    const nextButton = document.getElementById("next-button");
+    const trackTitle = document.getElementById("track-title");
+    const progress = document.getElementById("progress");
+    const currentTime = document.getElementById("current-time");
+    const duration = document.getElementById("duration");
+    const volume = document.getElementById("volume");
+    const playlistButtons =
+      document.querySelectorAll(".playlist-button");
+
+    let currentTrackIndex = 0;
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds)) {
+        return "0:00";
+      }
+
+      const minutes = Math.floor(seconds / 60);
+
+      const remainingSeconds = Math.floor(seconds % 60)
+        .toString()
+        .padStart(2, "0");
+
+      return `${minutes}:${remainingSeconds}`;
+    }
+
+    function updatePlayButton() {
+      const isPlaying = !audio.paused;
+
+      playButton.textContent = isPlaying ? "Ⅱ" : "▶";
+
+      playButton.setAttribute(
+        "aria-label",
+        isPlaying ? "Pause" : "Play"
+      );
+    }
+
+    function loadTrack(index, shouldPlay = false) {
+      currentTrackIndex = index;
+
+      const track = tracks[currentTrackIndex];
+
+      audio.src = track.file;
+      trackTitle.textContent = track.title;
+
+      playlistButtons.forEach((button, buttonIndex) => {
+        const isActive = buttonIndex === currentTrackIndex;
+
+        button.classList.toggle("is-active", isActive);
+
+        button.setAttribute(
+          "aria-current",
+          isActive ? "true" : "false"
+        );
+      });
+
+      progress.value = 0;
+      currentTime.textContent = "0:00";
+      duration.textContent = "0:00";
+
+      if (shouldPlay) {
+        audio.play().catch(() => {
+          updatePlayButton();
+        });
+      }
+    }
+
+    function playPreviousTrack() {
+      const previousIndex =
+        (currentTrackIndex - 1 + tracks.length) % tracks.length;
+
+      loadTrack(previousIndex, true);
+    }
+
+    function playNextTrack() {
+      const nextIndex =
+        (currentTrackIndex + 1) % tracks.length;
+
+      loadTrack(nextIndex, true);
+    }
+
+    playButton.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    previousButton.addEventListener(
+      "click",
+      playPreviousTrack
+    );
+
+    nextButton.addEventListener(
+      "click",
+      playNextTrack
+    );
+
+    playlistButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedIndex = Number(button.dataset.index);
+
+        loadTrack(selectedIndex, true);
+      });
+    });
+
+    audio.addEventListener("play", updatePlayButton);
+    audio.addEventListener("pause", updatePlayButton);
+
+    audio.addEventListener("loadedmetadata", () => {
+      duration.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      currentTime.textContent =
+        formatTime(audio.currentTime);
+
+      if (audio.duration) {
+        progress.value =
+          (audio.currentTime / audio.duration) * 100;
+      }
+    });
+
+    progress.addEventListener("input", () => {
+      if (!audio.duration) {
+        return;
+      }
+
+      audio.currentTime =
+        (Number(progress.value) / 100) * audio.duration;
+    });
+
+    volume.addEventListener("input", () => {
+      audio.volume = Number(volume.value);
+    });
+
+    audio.addEventListener("ended", playNextTrack);
+
+    audio.volume = Number(volume.value);
+
+    loadTrack(0);
+  </script>
+</body>
+</html>
