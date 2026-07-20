@@ -41,8 +41,3 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-document.querySelector('.contact-form')?.addEventListener('submit', event => {
-  event.preventDefault();
-  const button = event.currentTarget.querySelector('button');
-  button.textContent = 'Message ready — connect your email service';
-});
