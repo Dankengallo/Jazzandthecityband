@@ -17,6 +17,15 @@
 
   <link rel="stylesheet" href="assets/css/styles.css">
 
+  <!-- Used only for the large current-playing song title -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
+    rel="stylesheet"
+  >
+
   <style>
     .audio-section {
       padding-top: 1rem;
@@ -51,14 +60,14 @@
       opacity: 0.65;
     }
 
-    /* Only the large current-song title uses this font */
+    /* Only the large current-playing song title */
     .track-title {
       margin: 0 0 2rem;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size: clamp(1.8rem, 5vw, 3.4rem);
-      line-height: 1.08;
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.9rem, 5vw, 3.5rem);
+      line-height: 1.12;
       font-weight: 300;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.035em;
     }
 
     .player-controls {
@@ -222,7 +231,7 @@
       opacity: 0.55;
     }
 
-    /* Playlist typography remains unchanged */
+    /* Playlist font stays exactly as before */
     .playlist-title {
       font-size: clamp(0.95rem, 2vw, 1.15rem);
       font-weight: 500;
@@ -242,6 +251,10 @@
     @media (max-width: 600px) {
       .player-main {
         padding: 1.5rem;
+      }
+
+      .track-title {
+        font-size: clamp(1.8rem, 8vw, 2.6rem);
       }
 
       .progress-area {
@@ -478,13 +491,21 @@
 
     const audio = document.getElementById("audio");
     const playButton = document.getElementById("play-button");
-    const previousButton = document.getElementById("previous-button");
-    const nextButton = document.getElementById("next-button");
-    const trackTitle = document.getElementById("track-title");
-    const progress = document.getElementById("progress");
-    const currentTime = document.getElementById("current-time");
-    const duration = document.getElementById("duration");
-    const volume = document.getElementById("volume");
+    const previousButton =
+      document.getElementById("previous-button");
+    const nextButton =
+      document.getElementById("next-button");
+    const trackTitle =
+      document.getElementById("track-title");
+    const progress =
+      document.getElementById("progress");
+    const currentTime =
+      document.getElementById("current-time");
+    const duration =
+      document.getElementById("duration");
+    const volume =
+      document.getElementById("volume");
+
     const playlistButtons =
       document.querySelectorAll(".playlist-button");
 
@@ -497,9 +518,10 @@
 
       const minutes = Math.floor(seconds / 60);
 
-      const remainingSeconds = Math.floor(seconds % 60)
-        .toString()
-        .padStart(2, "0");
+      const remainingSeconds =
+        Math.floor(seconds % 60)
+          .toString()
+          .padStart(2, "0");
 
       return `${minutes}:${remainingSeconds}`;
     }
@@ -507,7 +529,8 @@
     function updatePlayButton() {
       const isPlaying = !audio.paused;
 
-      playButton.textContent = isPlaying ? "Ⅱ" : "▶";
+      playButton.textContent =
+        isPlaying ? "Ⅱ" : "▶";
 
       playButton.setAttribute(
         "aria-label",
@@ -540,16 +563,22 @@
       audio.src = track.file;
       trackTitle.textContent = track.title;
 
-      playlistButtons.forEach((button, buttonIndex) => {
-        const isActive = buttonIndex === currentTrackIndex;
+      playlistButtons.forEach(
+        (button, buttonIndex) => {
+          const isActive =
+            buttonIndex === currentTrackIndex;
 
-        button.classList.toggle("is-active", isActive);
+          button.classList.toggle(
+            "is-active",
+            isActive
+          );
 
-        button.setAttribute(
-          "aria-current",
-          isActive ? "true" : "false"
-        );
-      });
+          button.setAttribute(
+            "aria-current",
+            isActive ? "true" : "false"
+          );
+        }
+      );
 
       progress.value = 0;
       progress.style.setProperty("--fill", "0%");
@@ -565,7 +594,11 @@
 
     function playPreviousTrack() {
       const previousIndex =
-        (currentTrackIndex - 1 + tracks.length) % tracks.length;
+        (
+          currentTrackIndex -
+          1 +
+          tracks.length
+        ) % tracks.length;
 
       loadTrack(previousIndex, true);
     }
@@ -597,29 +630,46 @@
 
     playlistButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        const selectedIndex = Number(button.dataset.index);
+        const selectedIndex =
+          Number(button.dataset.index);
 
         loadTrack(selectedIndex, true);
       });
     });
 
-    audio.addEventListener("play", updatePlayButton);
-    audio.addEventListener("pause", updatePlayButton);
+    audio.addEventListener(
+      "play",
+      updatePlayButton
+    );
 
-    audio.addEventListener("loadedmetadata", () => {
-      duration.textContent = formatTime(audio.duration);
-      updateProgressFill();
-    });
+    audio.addEventListener(
+      "pause",
+      updatePlayButton
+    );
 
-    audio.addEventListener("timeupdate", () => {
-      currentTime.textContent =
-        formatTime(audio.currentTime);
+    audio.addEventListener(
+      "loadedmetadata",
+      () => {
+        duration.textContent =
+          formatTime(audio.duration);
 
-      updateProgressFill();
-    });
+        updateProgressFill();
+      }
+    );
+
+    audio.addEventListener(
+      "timeupdate",
+      () => {
+        currentTime.textContent =
+          formatTime(audio.currentTime);
+
+        updateProgressFill();
+      }
+    );
 
     progress.addEventListener("input", () => {
-      const progressPercent = Number(progress.value);
+      const progressPercent =
+        Number(progress.value);
 
       progress.style.setProperty(
         "--fill",
@@ -631,11 +681,13 @@
       }
 
       audio.currentTime =
-        (progressPercent / 100) * audio.duration;
+        (progressPercent / 100) *
+        audio.duration;
     });
 
     volume.addEventListener("input", () => {
-      const volumeValue = Number(volume.value);
+      const volumeValue =
+        Number(volume.value);
 
       audio.volume = volumeValue;
 
@@ -645,7 +697,10 @@
       );
     });
 
-    audio.addEventListener("ended", playNextTrack);
+    audio.addEventListener(
+      "ended",
+      playNextTrack
+    );
 
     audio.volume = Number(volume.value);
 
@@ -654,7 +709,10 @@
       `${Number(volume.value) * 100}%`
     );
 
-    progress.style.setProperty("--fill", "0%");
+    progress.style.setProperty(
+      "--fill",
+      "0%"
+    );
 
     loadTrack(0);
   </script>
