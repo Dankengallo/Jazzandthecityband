@@ -239,3 +239,94 @@ body.menu-open { overflow: hidden; }
   .hero { min-height: 100svh; }
   footer { padding-bottom: calc(30px + var(--safe-bottom)); }
 }
+/* Floating inquiry button */
+.floating-inquiry {
+  position: fixed;
+  right: calc(28px + var(--safe-right));
+  bottom: calc(28px + var(--safe-bottom));
+  z-index: 30;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 50px;
+  padding: 0 22px;
+
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+
+  background: var(--accent);
+  color: #ffffff;
+
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: .01em;
+
+  box-shadow: 0 14px 40px rgba(0,0,0,.38);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(18px);
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease,
+    visibility .3s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.floating-inquiry.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.floating-inquiry:hover,
+.floating-inquiry:focus-visible {
+  background: #2860a8;
+  box-shadow: 0 18px 48px rgba(0,0,0,.48);
+  transform: translateY(-2px);
+}
+
+.floating-inquiry-arrow {
+  transition: transform .25s ease;
+}
+
+.floating-inquiry:hover .floating-inquiry-arrow,
+.floating-inquiry:focus-visible .floating-inquiry-arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 800px) {
+  .floating-inquiry {
+    right: auto;
+    left: 50%;
+    bottom: calc(18px + var(--safe-bottom));
+
+    width: min(calc(100% - 32px), 360px);
+
+    transform: translate(-50%, 18px);
+  }
+
+  .floating-inquiry.visible {
+    transform: translate(-50%, 0);
+  }
+
+  .floating-inquiry:hover,
+  .floating-inquiry:focus-visible {
+    transform: translate(-50%, -2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-inquiry,
+  .floating-inquiry-arrow {
+    transition: none;
+  }
+}
