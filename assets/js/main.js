@@ -150,3 +150,59 @@ if (heroVideo) {
     { once: true, passive: true }
   );
 }
+/* Homepage hero music */
+const heroAudio = document.querySelector('#hero-audio');
+const heroMusicButton = document.querySelector(
+  '.hero-music-button'
+);
+
+if (heroAudio && heroMusicButton) {
+  heroAudio.volume = 0.5;
+
+  function updateHeroMusicButton() {
+    const isPlaying = !heroAudio.paused;
+
+    heroMusicButton.textContent = isPlaying
+      ? 'Pause Music'
+      : 'Play Music';
+
+    heroMusicButton.setAttribute(
+      'aria-pressed',
+      String(isPlaying)
+    );
+  }
+
+  function attemptHeroMusic() {
+    heroAudio
+      .play()
+      .then(updateHeroMusicButton)
+      .catch(updateHeroMusicButton);
+  }
+
+  heroMusicButton.addEventListener('click', () => {
+    if (heroAudio.paused) {
+      attemptHeroMusic();
+    } else {
+      heroAudio.pause();
+      updateHeroMusicButton();
+    }
+  });
+
+  heroAudio.addEventListener(
+    'play',
+    updateHeroMusicButton
+  );
+
+  heroAudio.addEventListener(
+    'pause',
+    updateHeroMusicButton
+  );
+
+  window.addEventListener(
+    'load',
+    attemptHeroMusic,
+    { once: true }
+  );
+
+  updateHeroMusicButton();
+}
