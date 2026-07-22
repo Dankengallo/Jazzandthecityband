@@ -55,7 +55,48 @@ button, input, textarea { font: inherit; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
 .menu-btn { display: none; background: none; color: var(--text); border: 0; font-size: 1.35rem; }
 
-.hero { min-height: 100vh; display: grid; align-items: end; padding: 150px 0 56px; position: relative; overflow: hidden; }
+.hero {
+  min-height: 100vh;
+  display: grid;
+  align-items: end;
+  padding: 150px 0 56px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center center;
+
+  background: #0a0a0a;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(10,10,10,.35) 0%,
+      rgba(10,10,10,.42) 38%,
+      rgba(10,10,10,.82) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(10,10,10,.72) 0%,
+      rgba(10,10,10,.38) 48%,
+      rgba(10,10,10,.48) 100%
+    );
+}
 .hero::after {
   content: ""; position: absolute; width: 60vw; height: 60vw; border-radius: 50%;
   background: radial-gradient(circle, rgba(31,78,140,.18), transparent 63%);
