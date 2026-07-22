@@ -430,3 +430,27 @@ body.menu-open { overflow: hidden; }
     min-width: 145px;
   }
 }
+/* iPhone safe-area: blurred continuation of navbar */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .site-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: var(--safe-top);
+
+    background: rgba(10, 10, 10, .82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .site-header .nav {
+    position: relative;
+    z-index: 1;
+  }
+}
