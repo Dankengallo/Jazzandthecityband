@@ -93,12 +93,34 @@
               Authentic New York jazz performed by dedicated musicians shaped by the city’s world-renowned scene.
             </p>
 
-            <a
-              class="btn primary"
-              href="music.html"
+            <div class="hero-actions">
+              <button
+                class="btn primary hero-music-button"
+                type="button"
+                aria-pressed="false"
+              >
+                Play Music
+              </button>
+
+              <a
+                class="btn"
+                href="music.html"
+              >
+                Listen
+              </a>
+            </div>
+
+            <audio
+              id="hero-audio"
+              autoplay
+              loop
+              preload="auto"
             >
-              Listen now
-            </a>
+              <source
+                src="assets/audio/Not so bluesy after all.mp3"
+                type="audio/mpeg"
+              >
+            </audio>
           </div>
         </div>
 
