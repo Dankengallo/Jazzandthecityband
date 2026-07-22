@@ -409,3 +409,24 @@ body.menu-open { overflow: hidden; }
     z-index: 2;
   }
 }
+/* Homepage hero music controls */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.hero-music-button {
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .hero-actions {
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    min-width: 145px;
+  }
+}
