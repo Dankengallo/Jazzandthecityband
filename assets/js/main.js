@@ -126,3 +126,27 @@ window.addEventListener(
 );
 
 updatePageOnScroll();
+/* Mobile hero autoplay support */
+const heroVideo = document.querySelector('.hero-video');
+
+if (heroVideo) {
+  heroVideo.muted = true;
+  heroVideo.defaultMuted = true;
+  heroVideo.playsInline = true;
+  heroVideo.setAttribute('playsinline', '');
+  heroVideo.setAttribute('webkit-playsinline', '');
+
+  const tryPlayHero = () => {
+    heroVideo.play().catch(() => {
+      // Some phones block autoplay in Low Power Mode.
+    });
+  };
+
+  tryPlayHero();
+
+  document.addEventListener(
+    'touchstart',
+    tryPlayHero,
+    { once: true, passive: true }
+  );
+}
