@@ -8,14 +8,140 @@
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
+  <title>
+    Jazz & The City Band | NYC Jazz Band for Weddings & Events
+  </title>
+
   <meta
     name="description"
-    content="Jazz & The City Band — New York City jazz musicians for weddings, cocktail hours, corporate events and private celebrations."
+    content="Jazz & The City Band provides authentic live New York jazz for weddings, cocktail hours, corporate events, and private celebrations throughout NYC and the surrounding area."
   >
 
-  <title>
-    Jazz & The City Band — New York City Jazz
-  </title>
+  <meta name="robots" content="index, follow">
+
+  <link
+    rel="canonical"
+    href="https://jazzandthecityband.com/"
+  >
+
+  <meta name="theme-color" content="#071b33">
+
+  <!-- Open Graph metadata -->
+  <meta property="og:type" content="website">
+
+  <meta
+    property="og:site_name"
+    content="Jazz & The City Band"
+  >
+
+  <meta
+    property="og:locale"
+    content="en_US"
+  >
+
+  <meta
+    property="og:url"
+    content="https://jazzandthecityband.com/"
+  >
+
+  <meta
+    property="og:title"
+    content="Jazz & The City Band | NYC Jazz for Weddings & Events"
+  >
+
+  <meta
+    property="og:description"
+    content="Authentic New York jazz performed by dedicated musicians for weddings, cocktail hours, corporate events, and private celebrations."
+  >
+
+  <!-- Social sharing metadata -->
+  <meta
+    name="twitter:card"
+    content="summary"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Jazz & The City Band | NYC Jazz for Weddings & Events"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Authentic New York jazz for weddings, cocktail hours, corporate events, and private celebrations."
+  >
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MusicGroup",
+        "@id": "https://jazzandthecityband.com/#musicgroup",
+        "name": "Jazz & The City Band",
+        "alternateName": "Jazz And The City Band",
+        "url": "https://jazzandthecityband.com/",
+        "description": "A New York City jazz ensemble performing authentic live jazz for weddings, cocktail hours, corporate events, and private celebrations.",
+        "email": "JazzAndTheCityBand@gmail.com",
+        "genre": [
+          "Jazz",
+          "Swing",
+          "Bebop",
+          "Traditional Jazz"
+        ],
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "New York City"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Long Island"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "New York Metropolitan Area"
+          }
+        ],
+        "sameAs": [
+          "https://www.google.com/maps/place/Jazz+And+The+City+Band/@40.7705108,-74.890124,8z/data=!3m1!4b1!4m6!3m5!1s0x25c76c343c19d99b:0xcf162343d73b14ca!8m2!3d40.778052!4d-73.5683375!16s%2Fg%2F11ywnckj9x?entry=ttu"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "booking inquiries",
+          "email": "JazzAndTheCityBand@gmail.com",
+          "areaServed": "US",
+          "availableLanguage": "English"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://jazzandthecityband.com/#website",
+        "url": "https://jazzandthecityband.com/",
+        "name": "Jazz & The City Band",
+        "description": "New York City jazz for weddings, cocktail hours, corporate events, and private celebrations.",
+        "publisher": {
+          "@id": "https://jazzandthecityband.com/#musicgroup"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://jazzandthecityband.com/#webpage",
+        "url": "https://jazzandthecityband.com/",
+        "name": "Jazz & The City Band | NYC Jazz Band for Weddings & Events",
+        "description": "Jazz & The City Band provides authentic live New York jazz for weddings, cocktail hours, corporate events, and private celebrations throughout NYC and the surrounding area.",
+        "isPartOf": {
+          "@id": "https://jazzandthecityband.com/#website"
+        },
+        "about": {
+          "@id": "https://jazzandthecityband.com/#musicgroup"
+        },
+        "inLanguage": "en-US"
+      }
+    ]
+  }
+  </script>
 
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
@@ -23,12 +149,27 @@
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a class="logo" href="index.html">
+      <a
+        class="logo"
+        href="index.html"
+        aria-label="Jazz & The City Band homepage"
+      >
         Jazz & The City
       </a>
 
-      <nav id="site-navigation" class="nav-links">
-        <a class="active" href="index.html">Home</a>
+      <nav
+        id="site-navigation"
+        class="nav-links"
+        aria-label="Main navigation"
+      >
+        <a
+          class="active"
+          href="index.html"
+          aria-current="page"
+        >
+          Home
+        </a>
+
         <a href="music.html">Listen</a>
         <a href="gallery.html">Gallery</a>
         <a href="about.html">About</a>
@@ -38,6 +179,7 @@
 
       <button
         class="menu-btn"
+        type="button"
         aria-expanded="false"
         aria-controls="site-navigation"
         aria-label="Open menu"
@@ -70,7 +212,10 @@
         >
       </video>
 
-      <div class="hero-video-overlay"></div>
+      <div
+        class="hero-video-overlay"
+        aria-hidden="true"
+      ></div>
 
       <div class="container">
         <div class="hero-grid">
@@ -99,6 +244,7 @@
                 class="btn primary hero-music-button"
                 type="button"
                 aria-pressed="false"
+                aria-controls="hero-audio"
               >
                 Play Music
               </button>
@@ -113,9 +259,8 @@
 
             <audio
               id="hero-audio"
-              autoplay
               loop
-              preload="auto"
+              preload="none"
             >
               <source
                 src="assets/audio/Not so bluesy after all.mp3"
@@ -131,7 +276,10 @@
       </div>
     </section>
 
-    <div class="marquee">
+    <div
+      class="marquee"
+      aria-label="Jazz & The City Band services"
+    >
       <div class="marquee-track">
         <span>
           WEDDINGS — COCKTAIL HOURS — CORPORATE EVENTS
@@ -141,24 +289,27 @@
           LIVE JAZZ FROM NEW YORK CITY
         </span>
 
-        <span>
+        <span aria-hidden="true">
           WEDDINGS — COCKTAIL HOURS — CORPORATE EVENTS
         </span>
 
-        <span>
+        <span aria-hidden="true">
           LIVE JAZZ FROM NEW YORK CITY
         </span>
       </div>
     </div>
 
-    <section>
+    <section aria-labelledby="who-we-are-heading">
       <div class="container split">
         <div class="reveal">
           <p class="eyebrow">
             Who we are
           </p>
 
-          <h2 class="section-title">
+          <h2
+            id="who-we-are-heading"
+            class="section-title"
+          >
             Artists first.
           </h2>
         </div>
@@ -182,13 +333,17 @@
       </div>
     </section>
 
-    <section class="rule">
+    <section
+      class="rule"
+      aria-labelledby="what-we-do-heading"
+    >
       <div class="container split">
         <div class="photo-card reveal">
           <img
             src="assets/images/upright-bass-black-and-white.webp"
-            alt="Upright bass player performing live"
+            alt="Upright bass player performing live jazz in New York City"
             loading="lazy"
+            decoding="async"
           >
         </div>
 
@@ -197,7 +352,10 @@
             What we do
           </p>
 
-          <h2 class="section-title">
+          <h2
+            id="what-we-do-heading"
+            class="section-title"
+          >
             True New York jazz.
           </h2>
 
@@ -223,37 +381,43 @@
       </div>
     </section>
 
-    <section class="rule">
+    <section
+      class="rule"
+      aria-labelledby="performances-heading"
+    >
       <div class="container">
         <div class="reveal">
           <p class="eyebrow">
             Listen
           </p>
 
-          <h2 class="section-title">
+          <h2
+            id="performances-heading"
+            class="section-title"
+          >
             Recent performances.
           </h2>
         </div>
 
         <div class="video-grid">
           <div class="video-card reveal">
-           <iframe
-  src="https://player.vimeo.com/video/1147183994"
-  title="Jazz & The City Band performance"
-  loading="lazy"
-  allow="autoplay; fullscreen; picture-in-picture"
-  allowfullscreen
-></iframe>
+            <iframe
+              src="https://player.vimeo.com/video/1147183994"
+              title="Jazz & The City Band live jazz performance"
+              loading="lazy"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
 
           <div class="video-card reveal">
             <iframe
-  src="https://player.vimeo.com/video/1133306141"
-  title="Jazz & The City Band performance"
-  loading="lazy"
-  allow="autoplay; fullscreen; picture-in-picture"
-  allowfullscreen
-></iframe>
+              src="https://player.vimeo.com/video/1133306141"
+              title="Jazz & The City Band New York jazz performance"
+              loading="lazy"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
 
@@ -267,64 +431,73 @@
         </p>
       </div>
     </section>
-<section class="rule">
-  <div class="container">
 
-    <div class="reveal">
-      <p class="eyebrow">
-        Kind Words
-      </p>
+    <section
+      class="rule"
+      aria-labelledby="reviews-heading"
+    >
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">
+            Kind Words
+          </p>
 
-      <h2 class="section-title">
-        Trusted by couples, planners, and venues.
-      </h2>
-    </div>
-
-    <div class="reviews-list">
-
-      <article class="review-card reveal">
-        <div class="review-stars">
-          ★★★★★
+          <h2
+            id="reviews-heading"
+            class="section-title"
+          >
+            Trusted by couples, planners, and venues.
+          </h2>
         </div>
 
-        <blockquote>
-          Dan's band brought so much wonderful energy to our wedding. They were very communicative and took all of our requests.
-        </blockquote>
+        <div class="reviews-list">
+          <article class="review-card reveal">
+            <div
+              class="review-stars"
+              aria-label="5 out of 5 stars"
+            >
+              <span aria-hidden="true">★★★★★</span>
+            </div>
 
-        <div class="review-credit">
-          <strong>Evan Piro</strong>
-          <span>Wedding Celebration</span>
+            <blockquote>
+              Dan's band brought so much wonderful energy to our wedding. They were very communicative and took all of our requests.
+            </blockquote>
+
+            <div class="review-credit">
+              <strong>Evan Piro</strong>
+              <span>Wedding Celebration</span>
+            </div>
+          </article>
+
+          <article class="review-card reveal">
+            <div
+              class="review-stars"
+              aria-label="5 out of 5 stars"
+            >
+              <span aria-hidden="true">★★★★★</span>
+            </div>
+
+            <blockquote>
+              We hired Jazz & The City Band for our end-of-year office party, and they completely elevated the atmosphere from the first song.
+            </blockquote>
+
+            <div class="review-credit">
+              <strong>Soy Yo</strong>
+              <span>Corporate Reception</span>
+            </div>
+          </article>
         </div>
-      </article>
 
-      <article class="review-card reveal">
-        <div class="review-stars">
-          ★★★★★
-        </div>
-
-        <blockquote>
-          We hired Jazz & The City Band for our end-of-year office party, and they completely elevated the atmosphere from the first song.
-        </blockquote>
-
-        <div class="review-credit">
-          <strong>Soy Yo</strong>
-          <span>Corporate Reception</span>
-        </div>
-      </article>
-
-    </div>
-
-    <p style="text-align:center; margin-top:2rem;">
-      <a
-        class="btn"
-        href="reviews.html"
-      >
-        Read More Kind Words
-      </a>
-    </p>
-
-  </div>
-</section>
+        <p style="text-align: center; margin-top: 2rem;">
+          <a
+            class="btn"
+            href="reviews.html"
+          >
+            Read More Kind Words
+          </a>
+        </p>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -340,7 +513,10 @@
           </p>
         </div>
 
-        <div class="socials">
+        <div
+          class="socials"
+          aria-label="Contact and social links"
+        >
           <a href="mailto:JazzAndTheCityBand@gmail.com">
             Email
           </a>
@@ -348,7 +524,7 @@
           <a
             href="https://vimeo.com/1147183994"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Vimeo
           </a>
