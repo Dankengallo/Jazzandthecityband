@@ -560,7 +560,8 @@ body.menu-open { overflow: hidden; }
 /* Reviews page: smaller review text and gold accents only */
 
 .review-card blockquote {
-  font-size: clamp(2rem, 3.6vw, 3.75rem) !important;
+  font-size: 1.15rem !important;
+  line-height: 1.6;
 }
 
 .review-card .review-stars {
