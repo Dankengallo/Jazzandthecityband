@@ -557,3 +557,16 @@ body.menu-open { overflow: hidden; }
     padding-bottom: 70px;
   }
 }
+/* Reviews page: smaller review text and gold accents only */
+
+.review-card blockquote {
+  font-size: 85%;
+}
+
+.review-card .review-stars {
+  color: #c9a35b;
+}
+
+.review-card .review-credit strong {
+  color: #c9a35b;
+}
