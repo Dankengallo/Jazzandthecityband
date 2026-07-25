@@ -554,13 +554,13 @@ body.menu-open { overflow: hidden; }
 
   .reviews-google {
     padding-top: 60px;
-    padding-bottom: 70px;
+    padding-bottom: 60px;
   }
 }
 /* Reviews page: smaller review text and gold accents only */
 
 .review-card blockquote {
-  font-size: 90%;
+  font-size: clamp(2rem, 3.6vw, 3.75rem) !important;
 }
 
 .review-card .review-stars {
