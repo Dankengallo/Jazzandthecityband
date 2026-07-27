@@ -528,5 +528,49 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const heroVideo = document.querySelector(".hero-video");
+    const desktopQuery = window.matchMedia("(min-width: 801px)");
+
+    if (!heroVideo) {
+      return;
+    }
+
+    function updateHeroVideo() {
+      if (desktopQuery.matches) {
+        if (!heroVideo.getAttribute("src")) {
+          heroVideo.setAttribute(
+            "src",
+            heroVideo.dataset.desktopSrc
+          );
+
+          heroVideo.load();
+
+          const playPromise = heroVideo.play();
+
+          if (playPromise !== undefined) {
+            playPromise.catch(function () {
+              // Autoplay may be blocked by the browser.
+            });
+          }
+        }
+      } else {
+        heroVideo.pause();
+        heroVideo.removeAttribute("src");
+        heroVideo.load();
+      }
+    }
+
+    updateHeroVideo();
+
+    if (desktopQuery.addEventListener) {
+      desktopQuery.addEventListener("change", updateHeroVideo);
+    } else {
+      desktopQuery.addListener(updateHeroVideo);
+    }
+  });
+</script>
 </body>
 </html>
