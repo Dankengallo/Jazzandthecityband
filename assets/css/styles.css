@@ -577,3 +577,8 @@ body.menu-open { overflow: hidden; }
     display: none;
   }
 }
+@media (max-width: 800px) {
+  .hero-video {
+    display: none !important;
+  }
+}
