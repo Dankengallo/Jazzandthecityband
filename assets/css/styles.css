@@ -571,3 +571,9 @@ body.menu-open { overflow: hidden; }
 .review-card .review-credit strong {
   color: #c9a35b;
 }
+@media (max-width: 800px) {
+  .hero-video,
+  .hero-video-overlay {
+    display: none;
+  }
+}
