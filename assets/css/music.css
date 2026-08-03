@@ -1,0 +1,174 @@
+.audio-section {
+  padding-top: 1rem;
+  padding-bottom: 6rem;
+}
+
+.audio-player {
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.player-main { padding: clamp(1.5rem, 4vw, 3rem); }
+.now-playing-label {
+  margin: 0 0 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.track-title {
+  margin: 0 0 2rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.9rem, 5vw, 3.5rem);
+  line-height: 1.12;
+  font-weight: 300;
+  letter-spacing: -0.035em;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.control-button {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.control-button:hover,
+.control-button:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.play-button {
+  width: 58px;
+  height: 58px;
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.96);
+  color: #111;
+  font-size: 1.05rem;
+}
+
+.play-button:hover,
+.play-button:focus-visible { background: #fff; }
+
+.progress-area {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.time {
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.62;
+}
+.time:last-child { text-align: right; }
+
+.progress,
+.volume {
+  --fill: 0%;
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(to right, #fff 0%, #fff var(--fill), rgba(255, 255, 255, 0.22) var(--fill), rgba(255, 255, 255, 0.22) 100%);
+  cursor: pointer;
+}
+
+.progress::-webkit-slider-thumb,
+.volume::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.progress::-moz-range-thumb,
+.volume::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.volume-row {
+  display: grid;
+  grid-template-columns: auto minmax(90px, 180px);
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+}
+
+.volume-label {
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.62;
+}
+
+.playlist {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  list-style: none;
+}
+
+.playlist-item + .playlist-item { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.playlist-button {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.15rem clamp(1.25rem, 4vw, 2.5rem);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+
+.playlist-button:hover,
+.playlist-button:focus-visible { background: rgba(255, 255, 255, 0.055); }
+.playlist-button.is-active { background: rgba(255, 255, 255, 0.09); }
+.track-number { font-size: 0.75rem; font-variant-numeric: tabular-nums; opacity: 0.55; }
+.playlist-title { font-size: clamp(0.95rem, 2vw, 1.15rem); font-weight: 500; }
+.playing-indicator { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0; }
+.playlist-button.is-active .playing-indicator { opacity: 0.7; }
+
+@media (max-width: 600px) {
+  .player-main { padding: 1.5rem; }
+  .track-title { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+  .progress-area { grid-template-columns: 42px minmax(0, 1fr) 42px; gap: 0.5rem; }
+  .playlist-button { grid-template-columns: 1.6rem minmax(0, 1fr); }
+  .playing-indicator { display: none; }
+}

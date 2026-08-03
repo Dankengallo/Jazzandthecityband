@@ -205,15 +205,14 @@
   <main>
     <section class="hero">
      <video
-  class="hero-video"
-  autoplay
-  muted
-  loop
-  playsinline
-  preload="none"
-  data-desktop-src="assets/video/hero-video.mp4"
-  aria-hidden="true"
-></video>
+        class="hero-video"
+        muted
+        loop
+        playsinline
+        preload="none"
+        data-desktop-src="assets/video/hero-video.mp4"
+        aria-hidden="true"
+      ></video>
 
       <div
         class="hero-video-overlay"
@@ -344,6 +343,8 @@
         <div class="photo-card reveal">
           <img
             src="assets/images/upright-bass-black-and-white.webp"
+            width="1125"
+            height="1432"
             alt="Upright bass player performing live jazz in New York City"
             loading="lazy"
             decoding="async"
@@ -403,48 +404,57 @@
         </div>
 
 <div class="video-grid">
-
-  <div
-    class="video-card video-placeholder reveal"
-    data-vimeo-id="1147183994"
-    data-video-title="Jazz & The City Band live jazz performance"
-  >
-    <button
-      class="video-placeholder-button"
-      type="button"
-      aria-label="Play Jazz & The City Band live jazz performance"
-    >
-      <span class="video-play-icon">▶</span>
-      <span class="video-placeholder-text">
-        Play performance
-      </span>
-    </button>
-  </div>
-
-  <div
-    class="video-card video-placeholder reveal"
-    data-vimeo-id="1133306141"
-    data-video-title="Jazz & The City Band New York jazz performance"
-  >
-    <button
-      class="video-placeholder-button"
-      type="button"
-      aria-label="Play Jazz & The City Band New York jazz performance"
-    >
-      <span class="video-play-icon">▶</span>
-      <span class="video-placeholder-text">
-        Play performance
-      </span>
-    </button>
-  </div>
-
-</div>
-          <a
-            class="btn"
-            href="music.html"
+          <div
+            class="video-card video-placeholder reveal"
+            data-vimeo-id="1147183994"
+            data-video-title="Jazz & The City Band live jazz performance"
           >
-            Watch all videos
-          </a>
+            <img
+              class="video-placeholder-image"
+              src="assets/images/jazz-trio-concert-performance.webp"
+              alt="Jazz & The City Band performing live"
+              loading="lazy"
+              decoding="async"
+              width="1600"
+              height="900"
+            >
+            <button
+              class="video-placeholder-button"
+              type="button"
+              aria-label="Play Jazz & The City Band live jazz performance"
+            >
+              <span class="video-play-icon" aria-hidden="true">▶</span>
+              <span class="video-placeholder-text">Play performance</span>
+            </button>
+          </div>
+
+          <div
+            class="video-card video-placeholder reveal"
+            data-vimeo-id="1133306141"
+            data-video-title="Jazz & The City Band New York jazz performance"
+          >
+            <img
+              class="video-placeholder-image"
+              src="assets/images/jazz-trio-live-concert.webp"
+              alt="Jazz trio performing live in New York"
+              loading="lazy"
+              decoding="async"
+              width="1600"
+              height="900"
+            >
+            <button
+              class="video-placeholder-button"
+              type="button"
+              aria-label="Play Jazz & The City Band New York jazz performance"
+            >
+              <span class="video-play-icon" aria-hidden="true">▶</span>
+              <span class="video-placeholder-text">Play performance</span>
+            </button>
+          </div>
+        </div>
+
+        <p class="reveal section-cta">
+          <a class="btn" href="music.html">Watch all videos</a>
         </p>
       </div>
     </section>
@@ -554,50 +564,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const heroVideo = document.querySelector(".hero-video");
-    const desktopQuery = window.matchMedia("(min-width: 801px)");
-
-    if (!heroVideo) {
-      return;
-    }
-
-    function updateHeroVideo() {
-      if (desktopQuery.matches) {
-        if (!heroVideo.getAttribute("src")) {
-          heroVideo.setAttribute(
-            "src",
-            heroVideo.dataset.desktopSrc
-          );
-
-          heroVideo.load();
-
-          const playPromise = heroVideo.play();
-
-          if (playPromise !== undefined) {
-            playPromise.catch(function () {
-              // Autoplay may be blocked by the browser.
-            });
-          }
-        }
-      } else {
-        heroVideo.pause();
-        heroVideo.removeAttribute("src");
-        heroVideo.load();
-      }
-    }
-
-    updateHeroVideo();
-
-    if (desktopQuery.addEventListener) {
-      desktopQuery.addEventListener("change", updateHeroVideo);
-    } else {
-      desktopQuery.addListener(updateHeroVideo);
-    }
-  });
-</script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/home.js" defer></script>
 </body>
 </html>
